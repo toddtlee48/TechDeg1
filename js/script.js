@@ -29,9 +29,10 @@ var quotes = [
       quote: 'I am too drunk to taste this chicken',
       source: 'Da Colonel'
     },
-
-      quote: 'Leave one wolf alive and the sheep are never safe.',
-      source: 'Arya Stark',
+    {
+      quote: 'Leave one wolf alive and the sheep are never safe',
+      source: 'Arya Stark'
+    },
 ];
 
 
@@ -41,7 +42,7 @@ var quotes = [
    - Create a variable to store a random number 
    - Cse the random number to `return` a random quote object from the `quotes` array.
 ***/
-function getRandomQuote() {
+function getRandomQuote(array) {
   var random = Math.floor(Math.random() * (quotes.length));
   for ( var i = 0; i < array.length; i++) {
     var randomQuote = array[random];
@@ -69,8 +70,8 @@ function printQuote() {
   var printMessage = '';
   printMessage = "<p class='quote'>" + quoteMessage.quote + "</p>";
   printMessage += "<p class='source'>" + quoteMessage.source;
-  printMessage += "<span class='citation'>" + result.citation + "</span>";
-  printMessage += "<span class= 'year'>" + result.year + "</span>";
+  printMessage += "<span class='citation'>" + quoteMessage.citation + "</span>";
+  printMessage += "<span class= 'year'>" + quoteMessage.year + "</span>";
   printMessage += "</p";
 
   document.getElementById('quote-box').innerHTML = printMessage;
@@ -78,6 +79,19 @@ function printQuote() {
 }
 
 printQuote();
+
+var loadQuote = document.getElementById("loadQuote");
+var characters = "0123456789ABCDEF";
+
+loadQuote.addEventListener("click", myFun);
+
+function myFun() {
+  var randomColor = "";
+  for(var i=0; i<2; i++) {
+    randomColor += characters[Math.floor(Math.random()* 20)];
+  }
+  document.body.style.backgroundColor = "#" + randomColor;
+}
 
 
 /***
@@ -87,7 +101,7 @@ printQuote();
   comment.
 ***/
 
-//document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
 
 
