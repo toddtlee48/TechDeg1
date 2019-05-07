@@ -27,7 +27,7 @@ var quotes = [
     },
     {
       quote: 'I am too drunk to taste this chicken',
-      source: 'Da Colonel',
+      source: 'Da Colonel'
     },
 
       quote: 'Leave one wolf alive and the sheep are never safe.',
