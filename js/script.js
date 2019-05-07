@@ -42,10 +42,14 @@ var quotes = [
    - Cse the random number to `return` a random quote object from the `quotes` array.
 ***/
 function getRandomQuote() {
-  var random = Math.floor(math.random() * (quotes.length));
+  var random = Math.floor(Math.random() * (quotes.length));
+  for ( var i = 0; i < array.length; i++) {
+    var randomQuote = array[random];
+  }
+  return randomQuote;
 }
 
-console.log(getRandomQuote());
+
 
 
 /***
@@ -60,8 +64,20 @@ console.log(getRandomQuote());
    - Don't forget to close that final `p` tag.
    - Set the `innerHTML` of the `quote-box` div to the HTML string. 
 ***/
+function printQuote() {
+  var quoteMessage = getRandomQuote(quotes);
+  var printMessage = '';
+  printMessage = "<p class='quote'>" + quoteMessage.quote + "</p>";
+  printMessage += "<p class='source'>" + quoteMessage.source;
+  printMessage += "<span class='citation'>" + result.citation + "</span>";
+  printMessage += "<span class= 'year'>" + result.year + "</span>";
+  printMessage += "</p";
 
+  document.getElementById('quote-box').innerHTML = printMessage;
 
+}
+
+printQuote();
 
 
 /***
@@ -72,6 +88,25 @@ console.log(getRandomQuote());
 ***/
 
 //document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
