@@ -23,15 +23,18 @@ var quotes = [
     {
        quote: 'Chaos isn’t a pit. Chaos is a ladder. Many who try to climb it fail, and never get to try again.',
        source: 'Petyr Baelish',
-       citation: 'Game of Thrones'
+       citation: 'Game of Thrones',
+       year: 1500
     },
     {
       quote: 'I am too drunk to taste this chicken',
-      source: 'Da Colonel'
+      source: 'Da Colonel',
+      year: 1990
     },
     {
       quote: 'Leave one wolf alive and the sheep are never safe',
-      source: 'Arya Stark'
+      source: 'Arya Stark',
+      citation: 'Game of Thrones'
     },
 ];
 
@@ -42,16 +45,16 @@ var quotes = [
    - Create a variable to store a random number 
    - Cse the random number to `return` a random quote object from the `quotes` array.
 ***/
+
+
+
 function getRandomQuote(array) {
-  var random = Math.floor(Math.random() * (quotes.length));
+  random = Math.floor(Math.random() * (quotes.length));
   for ( var i = 0; i < array.length; i++) {
     var randomQuote = array[random];
   }
   return randomQuote;
 }
-
-
-
 
 /***
   Create the `printQuote` function to: 
@@ -65,33 +68,36 @@ function getRandomQuote(array) {
    - Don't forget to close that final `p` tag.
    - Set the `innerHTML` of the `quote-box` div to the HTML string. 
 ***/
+function randomRGB() {
+    return Math.floor(Math.random() * 256);
+}
+
 function printQuote() {
+
+  var red = randomRGB();
+  var green = randomRGB();
+  var blue = randomRGB();
+  var rgbColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
   var quoteMessage = getRandomQuote(quotes);
   var printMessage = '';
+
   printMessage = "<p class='quote'>" + quoteMessage.quote + "</p>";
   printMessage += "<p class='source'>" + quoteMessage.source;
-  printMessage += "<span class='citation'>" + quoteMessage.citation + "</span>";
-  printMessage += "<span class= 'year'>" + quoteMessage.year + "</span>";
+  if(quoteMessage.hasOwnProperty('citation') === true) {
+    printMessage += '<span class="citation">' + quoteMessage.citation + '</span>';
+  }
+  if(quoteMessage.hasOwnProperty('year') === true) {
+    printMessage += '<span class= "year">' + quoteMessage.year + '</span>';
+
+  }
   printMessage += "</p";
 
+  document.body.style.backgroundColor = rgbColor;
   document.getElementById('quote-box').innerHTML = printMessage;
 
 }
 
-printQuote();
 
-var loadQuote = document.getElementById("loadQuote");
-var characters = "0123456789ABCDEF";
-
-loadQuote.addEventListener("click", myFun);
-
-function myFun() {
-  var randomColor = "";
-  for(var i=0; i<2; i++) {
-    randomColor += characters[Math.floor(Math.random()* 20)];
-  }
-  document.body.style.backgroundColor = "#" + randomColor;
-}
 
 
 /***
