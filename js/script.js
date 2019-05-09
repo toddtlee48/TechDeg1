@@ -1,53 +1,75 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
+//Project 1 Random Quote Generator
+//This section creates all of the random quotes. 
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
-
-
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-  Add the `citation` property to at least one object in the array.
-  Add the `year` property to at least one object in the array.
-  Use console.log() to log your array of quotes to the console.
-***/
 var quotes = [
     {
        quote: 'The man who passes the sentence should swing the sword.',
        source: 'Ned Stark',
-       citation: 'Game of Thrones'
+       citation: 'Game of Thrones',
+       genre: 'Fantasy'
     },
     {
        quote: 'Chaos isn’t a pit. Chaos is a ladder. Many who try to climb it fail, and never get to try again.',
        source: 'Petyr Baelish',
        citation: 'Game of Thrones',
-       year: 1500
+       genre: 'Fantasy'
+       
     },
     {
-      quote: 'I am too drunk to taste this chicken',
-      source: 'Da Colonel',
-      year: 1990
+      quote: 'When you play the game of thrones, you win or you die. There is no middle ground.',
+      source: 'Cersei Lannister',
+      citation: 'Game of Thrones',
+      genre: 'Fantasy'
     },
     {
       quote: 'Leave one wolf alive and the sheep are never safe',
       source: 'Arya Stark',
-      citation: 'Game of Thrones'
+      citation: 'Game of Thrones',
+      genre: 'Fantasy'
+    },
+    {
+      quote: 'A lion does not concern himself with the opinion of sheep',
+      source: 'Tywin Lannister',
+      citation: 'Game of Thrones',
+      genre: 'Fantasy'
+    },
+    {
+      quote: 'My momma always said, “Life is like a box of chocolates, you never know what you’re gonna get',
+      source: 'Forest Gump',
+      citation: 'Forest Gump',
+      genre: 'Comedy-Drama',
+      year: 1994      
+    },
+    {
+      quote: 'Great men are not born great, they grow great.',
+      source: 'Vito Corleone',
+      citation: 'Godfather',
+      genre: 'Drama',
+      year: 1972
+    },
+    {
+      quote: 'Life moves pretty fast. If you don’t stop and look around once in a while, you could miss it.',
+      source: 'Ferris',
+      citation: "Ferris Bueller's Day Off",
+      genre: 'Drama',
+      year: 1986
+
+    },
+    {
+      quote: 'Let us not seek to satisfy our thirst for freedom by drinking from the cup of bitterness and hatred',
+      source: 'Martin Luther King Jr.',
+      citation: 'I have a dream speech',
+      year: 1963
+    },
+
+    {
+      quote: "Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.",
+      source: "Barack Obama",
+      year: 2008
     },
 ];
 
-
-
-/***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number 
-   - Cse the random number to `return` a random quote object from the `quotes` array.
-***/
-
-
-
+//Function that returns a random quote by creating a random number. 
 function getRandomQuote(array) {
   random = Math.floor(Math.random() * (quotes.length));
   for ( var i = 0; i < array.length; i++) {
@@ -56,22 +78,12 @@ function getRandomQuote(array) {
   return randomQuote;
 }
 
-/***
-  Create the `printQuote` function to: 
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND 
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
+//Function that makes a random color
 function randomRGB() {
     return Math.floor(Math.random() * 256);
 }
 
+//Function that prints the messages to the webpage.
 function printQuote() {
 
   var red = randomRGB();
@@ -84,33 +96,32 @@ function printQuote() {
   printMessage = "<p class='quote'>" + quoteMessage.quote + "</p>";
   printMessage += "<p class='source'>" + quoteMessage.source;
   if(quoteMessage.hasOwnProperty('citation') === true) {
-    printMessage += '<span class="citation">' + quoteMessage.citation + '</span>';
+    printMessage += '<span class="citation">' +  ' ' + quoteMessage.citation + '</span>';
+  }
+  if (quoteMessage.hasOwnProperty('genre') === true) {
+    printMessage += '<span class="genre">' + ', ' + quoteMessage.genre + '</span>';
   }
   if(quoteMessage.hasOwnProperty('year') === true) {
     printMessage += '<span class= "year">' + quoteMessage.year + '</span>';
-
   }
   printMessage += "</p";
-
   document.body.style.backgroundColor = rgbColor;
   document.getElementById('quote-box').innerHTML = printMessage;
-
 }
 
+let interval;
+// This function will call the printQuote function and reset the timer
+const startInterval = function () {
+    printQuote();
+    clearInterval(interval);
+    interval = setInterval(printQuote, 20000);
+}
 
+// This starts the timer
+startInterval();
 
-
-/***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
-  comment.
-***/
-
+//Event listener that responds to a click of the mouse
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-
 
 
 
